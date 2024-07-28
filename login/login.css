@@ -1,0 +1,179 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #C0C0C0;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    overflow-x: none;
+}
+
+/* header */
+.header {
+    background-color: #FFFAFA;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .left {
+    display: flex;
+    align-items: center;
+}
+
+.header #logo {
+    height: 70px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.header .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header h2 {
+    color: black;
+    margin: 0;
+    font-size: 24px;
+}
+
+.header span {
+    color: black;
+    font-size: 14px;
+}
+
+.header .right {
+    display: flex;
+    gap: 10px;
+}
+
+.header a {
+    color: #333; /* Dark grey text color */
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: white; /* White background */
+    border: 2px solid gainsboro; /* Light grey border */
+    border-radius: 20px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition */
+}
+.header a:hover {
+    background-color: #f0f0f0; /* Slightly darker grey background */
+    color: #006666; /* Dark cyan text color */
+    border-color: #006666; /* Dark cyan border */
+}
+
+/* center */
+.center {
+    display: flex;
+    justify-content: center;
+    margin-top: 12.5%;
+    padding: 0.75em;
+}
+.center .header {
+    background-color: ghostwhite;
+    border: 1px solid #ccc;
+    border-top-left-radius: 0.75em;
+    border-top-right-radius: 0.75em;
+    width: 30em;
+    height: 3em;
+    display: block;
+}
+.center .header img {
+    height: 3em;
+    width: 3em;
+    float: left;
+}
+.center .header h2 {
+    color: black;
+    margin-top: 0.75em;
+    float: left;
+}
+.center .header a {
+    float: right;
+}
+.center .formMain {
+    margin-right: 20%;
+}
+.center .register {
+    background-color: white;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-bottom-left-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
+    box-shadow: #ccc 0.75em 0.75em 0.75em;
+    padding: 0.75em;
+    width: 29.75em;
+}
+.center {
+    position: relative;
+}
+.center .form {
+    position: absolute;
+}
+.center #form-2 {
+    margin-left: 250%;
+}
+.center #form-3 {
+    margin-left: 250%;
+}
+.center #detail {
+    font-size: 14px;
+    margin-left: 0.75em;
+}
+.center #formInput {
+    padding: 0.5em 0.75em;
+    width: 15em;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    display: block;
+    margin-bottom: 0.75em;
+    margin-left: 25%;
+}
+.center #formInput:focus {
+    outline: 0;
+    border-bottom: 1px solid #333;
+    transition: 0.3s border-bottom;
+}
+.center #checkbox {
+    margin-left: 25%;
+    margin-bottom: 0.75em;
+}
+.center label {
+    font-size: 14px;
+}
+.center .button {
+    padding: 0.5em;
+    color: white;
+    text-decoration: none;
+    background-color: teal;
+    border: none;
+    border-radius: 0.75em;
+    margin-left: 25%;
+    width: 16.5em;
+    text-align: center;
+}
+.center .button:hover {
+    background-color: #006666;
+}
+
+/* footer */
+.footer {
+    align-items: center;
+    text-align: center;
+    align-self: flex-end;
+    float: bottom;
+}
+#copyright {
+    text-align: center;
+}

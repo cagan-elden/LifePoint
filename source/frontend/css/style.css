@@ -1,0 +1,628 @@
+/* Default Values */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ddd;
+}
+.container {
+    margin: 0;
+    padding: 0;
+    background-color: #ddd;
+}
+
+/* Header */
+.header {
+    background-color: white;
+    box-shadow: 3px 3px 3px #ccc;
+    padding: 0.75em;
+    height: 80px;
+}
+.header .left {
+    display: flex;
+    align-items: center;
+    float: left;
+}
+.header .left #logo {
+    height: 70px;
+    width: auto;
+    margin-right: 10px;
+    float: left;
+}
+.header .left .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.header .left a {
+    text-decoration: none;
+    color: black;
+}
+.header .left .text #title {
+    font-family: verdana;
+    font-size: 24px;
+    float: left;
+}
+.header .left .text #detail {
+    font-family: verdana;
+    font-size: 14px;
+    float: left;
+    margin-top: -1em;
+}
+
+.header .searchbarDiv {
+    float: left;
+    margin-top: 0.75em;
+    margin-left: 27%;
+}
+.header .searchbarDiv #searchbar {
+    font-family: verdana;
+    font-size: 14px;
+    width: 20em;
+    padding: 0.75em;
+    border: 1px solid #ccc;
+    border-radius: 5em 0 0 5em;
+    box-shadow: 3px 3px 3px #ccc;
+    margin-right: -0.4em;
+}
+.header .searchbarDiv #searchbar:focus {
+    outline: none;
+}
+.header .searchbarDiv #searchButton {
+    font-family: verdana;
+    font-size: 14px;
+    padding: 0.75em;
+    box-shadow: 3px 3px 3px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 0% 25% 25% 0%;
+    cursor: pointer;
+}
+
+.header .right {
+    float: right;
+    display: flex;
+    position: relative;
+}
+.header .right .user {
+    position: relative;
+}
+.header .right #streak {
+    width: 50px;
+    height: 50px;
+}
+.header .right #detail {
+    font-family: verdana;
+    font-size: 14px;
+    margin-top: 4em;
+    margin-left: -3.25em;
+    margin-right: 1.75em;
+}
+.header .right .user #profilePicDp {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.header .headerDropdown {
+    background-color: white;
+    margin-top: 0.75em;
+    box-shadow: 3px 3px 3px #ccc;
+    border: 1px solid #ccc;
+    border-radius: 0.75em;
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0; 
+}
+.header .headerDropdown ul {
+    margin: 0;
+    padding: 0;
+}
+.header .headerDropdown #dropdownItem {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 0.75em;
+    width: 13em;
+    font-family: verdana;
+    font-size: 16px;
+}
+.header .headerDropdown #dropdownItem:hover {
+    background-color: #ddd;
+}
+.header .headerDropdown #dropdownItem a {
+    text-decoration: none;
+    color: black;
+    width: inherit;
+    height: inherit;
+}
+.header .headerDropdown #dropdownItem #pfp{
+    width: 3em;
+    height: initial;
+    border-radius: 50%;
+    float: left;
+    margin-right: 0.75em;
+}
+.header .headerDropdown #dropdownItem #themeChanger {
+    background-color: white;
+    border: none;
+}
+
+/* Center */
+.center {
+    padding: 0.75em;
+}
+
+/* upperDash */
+.upperDash {
+    padding: 0.75em;
+    margin: 0px, 0px, 0.75em, 0.75em;
+}
+.upperDash #welcome {
+    font-family: verdana;
+    font-size: 16px;
+}
+.upperDash #detail {
+    align-items: center;
+    font-family: verdana;
+    font-size: 14px;
+    margin-left: 25%;
+}
+/* dashboard */
+.center .dashContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+.center .dashboard {
+    border-radius: 0.75em;
+    box-shadow: 3px 3px 3px #ccc;
+    width: fit-content;
+    height: 25%;
+    display: inline-block;
+    margin-top: 0.75em;
+    margin-right: 3em;
+}
+.center .dashHeader {
+    padding: 0.75em;
+    border-top-left-radius: 0.75em;
+    border-top-right-radius: 0.75em;
+    border-bottom: 1px solid #ccc;
+    background-color: cadetblue;
+    height: 1.25em;
+}
+.center .dashHeader #dashTitle {
+    font-family: verdana;
+    font-size: 15px;
+    float: left;
+    margin-top: -0.10em;
+}
+.center .dashHeader #dashHref {
+    float: right;
+}
+.center .dashBody {
+    padding: 0.75em;
+    background-color: whitesmoke;
+    border-bottom-left-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
+}
+.center .dashBody #dashItem {
+    list-style: none;
+    margin-left: -3em;
+    font-family: verdana;
+    font-size: 14px;
+    margin-bottom: 0.75em;
+}
+.center .dashBody #dashItem #time {
+    background-color: #ccc;
+    padding: 0.25em;
+    margin-right: 5em;
+    border-radius: 0.5em;
+}
+.center #dashAlignItemsCenter {
+    align-items: center;
+    padding-top: 40%;
+    height: 7.8em;
+}
+.center .dashBody #detail {
+    font-family: verdana;
+    font-size: 10px;
+    color: gray;
+}
+
+.center #diaryBody {
+    width: 15em;
+    height: 13.25em;
+    text-align: center;
+}
+.center #diaryBody #date {
+    float: right;
+    font-family: verdana;
+    font-size: 14px;
+}
+.center #diaryBody #diaryText {
+    font-family: verdana;
+    font-size: 14px;
+    margin-top: 25%;
+}
+
+.center #month {
+    width: 19em;
+    float: right;
+}
+.center #month .dashBody {
+    height: 13.25em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.center #month .dashBody #date {
+    font-family: verdana;
+    font-size: 12px;
+    background-color: #ccc;
+    border-radius: 0.75em;
+    color: black;
+    padding: 0.75em;
+    margin-right: 0.5em;
+    height: 1.3em;
+}
+
+.center .dashboard #albumPhotoContainer {
+    padding: 0;
+    height: 15em;
+}
+.center .dashboard #albumPhotoContainer #albumPhoto {
+    width: 15em;
+    height: initial;
+    border-bottom-left-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
+}
+
+.center .dashboard #dashAd {
+    background-color: coral;
+}
+
+/* profile */
+.center .profileContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+.center .profile {
+    margin-top: 0.75em;
+    margin: 0;
+    padding: 0;
+    width: 45em;
+    border-radius: 0.75em;
+    display: flexbox;
+}
+.center .profile .profileHeader {
+    padding: 0.75em;
+}
+.center .profile .profileHeader #pfp {
+    height: 5em;
+    width: initial;
+    border-radius: 50%;
+    margin-right: 0.75em;
+    display: inline;
+    cursor: pointer;
+    float: left;
+    margin-bottom: 0.75em;
+}
+.center .profileHeader .profileHeader .headerDetailContainer {
+    display: inline;
+}
+.center .profile .profileHeader #displayName {
+    font-family: verdana;
+    font-size: 20px;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+.center .profile .profileHeader #username {
+    font-family: verdana;
+    font-size: 15px;
+    margin: 0;
+    display: block;
+}
+.center .profile .profileHeader #point {
+    margin: 0;
+    font-family: verdana;
+    font-size: 15px;
+}
+
+.center .profile .profileMenu {
+    display: block;
+}
+.center .profile .profileMenu ul #profileMenuItem {
+    list-style: none;
+    font-family: verdana;
+    font-size: 16px;
+    display: inline-block;
+    width: 8em;
+}
+.center .profile .profileMenu ul #profileMenuItem:hover #menuSelector{
+    background-color: black;
+    transition: background-color 0.5s;
+}
+.center .profile .profileMenu ul #profileMenuItem a {
+    text-decoration: none;
+    color: black;
+}
+.center .profile .profileMenu ul #profileMenuItem a #miniIcon {
+    height: 1.5em;
+    width: initial;
+    float: left;
+    margin-bottom: 0.75em;
+    margin-left: 0.5em;
+}
+.center .profile .profileMenu ul #profileMenuItem a span {
+    margin-top: 0.25em;
+    float: left;
+}
+.center .profile .profileMenu ul #profileMenuItem a #menuSelector {
+    height: 5px;
+    width: 8em;
+    border-radius: 0.75em;
+    background-color: #ccc;
+    display: block;
+}
+#pfpBigDialog {
+    display: none;
+    width: 24.5em;
+    height: initial;
+    background-color: #ddd;
+    padding: 0;
+    border: 0;
+    .container::backdrop {
+        background: #ccc;
+    }
+}
+#pfpBigDialog #profilePic {
+    width: 25em;
+    height: initial;
+}
+
+/* diary */
+.diaryLeftContainer {
+    float: left;
+    padding: 0;
+    margin: 0.75em 0 0 0.75em;
+    box-shadow: 3px 3px 3px #ccc;
+    border-radius: 0.75em;
+    height: 38.5em;
+    width: 20em;
+}
+.diaryLeftContainer .diaryHeader {
+    background-color: cadetblue;
+    border-top-left-radius: 0.75em;
+    border-top-right-radius: 0.75em;
+    height: 3em;
+    padding: 0.75em;
+}
+.diaryLeftContainer .diaryHeader #title {
+    font-family: verdana;
+    font-size: 17px;
+    float: left;
+}
+.diaryLeftContainer .diaryHeader button#newEntry {
+    float: right;
+    background-color: cadetblue;
+    border: none;
+    font-family: verdana;
+    font-size: 14px;
+    margin-top: 0.75em;
+    cursor: pointer;
+}
+.diaryLeftContainer .diaryHeader #miniIcon {
+    float: left;
+}
+.diaryLeftContainer .diaryHeader b {
+    float: left;
+    margin-top: 0.25em;
+}
+.diaryLeftContainer .diaryBody {
+    background-color: white;
+    height: 34.1em;
+    border-bottom-left-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
+    overflow-y: scroll;
+}
+.diaryLeftContainer .diaryBody #center {
+    font-family: verdana;
+    font-size: 0.75em;
+}
+.diaryLeftContainer .diaryBody #date {
+    list-style: none;
+}
+/* change these hrefs to buttons later */
+.diaryLeftContainer .diaryBody #date button {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    font-family: verdana;
+    font-size: 15px;
+    padding: 0.75em;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    width: 20em;
+}
+.diaryLeftContainer .diaryBody #date button:hover {
+    background-color: #ddd;
+}
+
+.diaryLeftContainer .diaryBody::-webkit-scrollbar {
+    width: 1em;
+    background-color: white;
+    border-bottom-right-radius: 0.75em;
+}
+.diaryRightContainer {
+    float: right;
+    margin: 0.75em;
+    margin-top: 5em;
+    margin-right: 13.75%;
+}
+.diaryRightContainer .textHere {
+    background-color: whitesmoke;
+    width: 35em;
+    height: 38em;
+    border: 1px solid #ccc;
+    border-radius: 5%;
+    padding: 0.75em;
+    box-shadow: 3px 3px 3px #ccc;
+    margin-top: -4.25em;
+    overflow-y: scroll;
+    overflow-x: none;
+    float: left;
+}
+.diaryRightContainer #notSet {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.diaryRightContainer .textHere #textHere {
+    font-family: verdana;
+    font-size: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.diaryRightContainer .textHere #textHere #dateHelix {
+    float: right;
+    margin-left: 26em;
+    font-size: 17px;
+    font-family: arial;
+    margin-bottom: 1em;
+}
+.diaryRightContainer .textHere #textHere #textLune {
+    display: block;
+    width: 30em;
+    text-align: center;
+    margin-left: 10%;
+    font-family: arial;
+}
+.diaryRightContainer .dashboardDay {
+    border-top-right-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
+    height: 39.25em;
+    width: 20em;
+    float: right;
+    box-shadow: 3px 3px 3px #ccc;
+    margin-top: -4em;
+    background-color: white;
+}
+.diaryRightContainer .dashboardDay .dashboardDayHeader {
+    background-color: cadetblue;
+    padding: 0.75em;
+    border-top-right-radius: 0.75em;
+    font-family: verdana;
+    font-size: 13px;
+}
+.diaryRightContainer .dashboardDay .dashboardDayBody {
+    background-color: white;
+    padding: 0.75em -1em 0;
+}
+.diaryRightContainer .dashboardDay .dashboardDayBody #element {
+    font-family: verdana;
+    font-size: 16px;
+    list-style: none;
+    margin-left: -1.75em;
+}
+.diaryRightContainer .dashboardDay .dashboardDayBody #element #time {
+    background-color: green;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+.diaryRightContainer .dashboardDay .dashboardDayBody #element #detail {
+    margin-left: 10em;
+}
+
+/* Plan CSS */
+.container .center .dashboard {
+    background-color: whitesmoke;
+}
+.container .center .dashboard .dashBody #element {
+    list-style: none;
+    margin-bottom: 0.75em;
+    margin-left: -2em;
+}
+.container .center .dashboard .dashBody #element .time {
+    font-family: arial;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    background-color: white;
+    width: 7.5em;
+}
+.container .center .dashboard .dashBody #element .time:focus {
+    outline: none;
+    border: 1px solid black;
+    transition: 0.5s border;
+}
+.container .center .dashboard .dashBody #element .detail {
+    font-family: arial;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5em;
+    background-color: whitesmoke;
+    color: black;
+    margin-left: 2.5em;
+}
+.container .center .dashboard .dashBody #element .detail:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+    transition: 0.5s border-bottom;
+}
+.container .center .dashboard .dashBody .button {
+    background-color: cadetblue;
+    border: 1px solid #ccc;
+    border-radius: 0.75em;
+    color: whitesmoke;
+    padding: 0.75em;
+    font-family: arial;
+    font-size: 14px;
+    cursor: pointer;
+    width: 12em;
+    margin-bottom: 0.75em;
+}
+.container .center .dashboard .dashBody .button:hover {
+    box-shadow: 3px 3px 3px #ccc;
+    transition: 0.5s box-shadow;
+}
+.container .center .dashboard .dashBody .button:disabled {
+    background-color: #96c5cb;
+    color: #666666;
+}
+.container .center .dashboard .dashBody .button#addNewElement {
+    margin-right: 0.75em;
+    float: left;
+}
+.container .center .dashboard .dashBody .button#submitButton {
+    float: right;
+}
+
+.dashboard#newDashDash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+    height: 21.5em;
+    width: 20em;
+}
+.dashboard#newDashDash .button {
+    font-family: verdana;
+    font-size: 16px;
+    border: none;
+    padding: 0.75em;
+    background-color: #eee;
+    color: #313638;
+    width: 75%;
+    border-radius: 0.75em;
+    cursor: pointer;
+}
+.dashboard#newDashDash .button:hover {
+    background-color: #ccc;
+}
