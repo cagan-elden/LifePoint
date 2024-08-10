@@ -43,6 +43,7 @@
                         <a href="profile.php">
                             <img src="<?php echo $_SESSION['profilePic'] ?>" alt="" id="pfp">
                             <b>Profile</b>
+                            <br>
                             <span><?php echo $_SESSION['username'] ?></span>
                         </a>
                     </li>
