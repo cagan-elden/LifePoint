@@ -19,19 +19,19 @@ if (empty($_SESSION['csrf_token'])) {
                             <input type="hidden" name="date" value="<?php echo $date; ?>">
                             <input type="hidden" name="amount" value="<?php echo $amount; ?>"> <!-- While working with Ajax work about amount too. It represents the amount of elements in a dash. -->
                             <li id="element"><input type="text" class="time" name="time" placeholder="Enter time"><input type="text" class="detail" name="chore" placeholder="Enter detail"></li>
-
-                            <!-- Honeypot Elements -->
-                            <input type="hidden" name="joeMama">
-                            <input type="hidden" name="upperClassman">
-                            <input type="hidden" name="impostorSyndrome">
-                            <input type="hidden" name="janePapa">
-                            <input type="hidden" name="frenchBall">
                         </ul>
-                        <button id="addNewElement" class="button">+ Add new task</button>
-                        <button id="removeElement" class="button">- Remove a task</button>
+                        <button id="addNewElement" class="button" data="0">+ Add new task</button>
+                        <button id="removeElement" class="button" data="0">- Remove a task</button>
                     </div>
                 </div>
             </div>
+
+            <!-- Honeypot Elements -->
+            <input type="hidden" name="joeMama">
+            <input type="hidden" name="upperClassman">
+            <input type="hidden" name="impostorSyndrome">
+            <input type="hidden" name="janePapa">
+            <input type="hidden" name="frenchBall">
 
             <div class="dashboard" id="newDashDash">
                 <button id="createNewDash" class="button">+ Plan Another Day</button>
