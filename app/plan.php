@@ -43,79 +43,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['date']) && isset($_GET[
 
     <!-- JQuery -->
     <script>
-        var dashes = [0];
-        var dashElementHandler = [5];
-
-        var dateTodObj = new Date();
-        const dateTod = dateTodObj.toLocaleDateString();
-        console.log(dateTod);
+        var counter = 5;
 
         $(document).ready(function(){
-            // Little functions
-            let makeDisabledAble = (disabled) => {
-                if ($(disabled).prop('disabled')) {
-                    $(disabled).prop('disabled', false);
+
+            // Functions here
+            var createFive = () => {
+                for (var i=0; i < 4; i++) {
+                    var newElement = $('#element').clone().first();
+                    newElement.appendTo('.dashBody ul');
                 }
             }
 
-            let createFive = (parent) => {
-                for (var createElement=0; createElement < 4; createElement++) {
-                    var element = $('#element').first().clone();
-                    $(element).appendTo('.dashBody ul').eq(parent);
+            var btnSitControl = (paramBtn, paramSit) => {
+                if ($(paramBtn).prop('disabled', paramSit)) {
+                    $(paramBtn).prop('disabled', !paramSit);
                 }
             }
 
-            // For the first dashboard
-            createFive(0);
+            createFive();
 
-            // Button functions in dash
+            // Main here
             $('#addNewElement').click(function(event){
                 event.preventDefault();
 
-                var parentDash = $(this).parent();
-                var parentIndex = parentDash.index();
-                var newElementButton = $(parentDash).eq(parentIndex-1).find(this);
-                var removeElement = $(parentDash).eq(parentIndex-1).find('#removeElement');
+                if (counter <= 9) {
+                    var element = $('#element').clone().first();
+                    element.appendTo('.dashBody ul');
 
-                if (dashElementHandler[parentIndex-1] === 10) {
-                    $(newElementButton).prop('disabled', true);
-
+                    btnSitControl('#removeElement', true);
+                    counter++;
                 } else {
-                    var cloneElement = $('.dashBody ul').eq(parentIndex-1).find('#element').first().clone();
-                    $(cloneElement).appendTo('.dashBody ul').eq(parentIndex-1);
-                    dashElementHandler[parentIndex-1]++;
-                    makeDisabledAble(removeElement);
+                    btnSitControl('#addNewElement', false);
                 }
             });
 
             $('#removeElement').click(function(event){
                 event.preventDefault();
 
-                var parentDash = $(this).parent();
-                var parentIndex = parentDash.index();
-                var removeElementBTN = $(parentDash).eq(parentIndex-1).find(this);
-                var addElement = $(parentDash).eq(parentIndex-1).find('#addNewElement');
-
-                if (dashElementHandler[parentIndex-1] === 1) {
-                    $(removeElementBTN).prop('disabled', true);
-
+                if (counter > 1) {
+                    var element = $('#element').remove().last();
+                    btnSitControl('#addNewElement', true);
+                    counter--;
                 } else {
-                    var elementToRem = $('.dashBody ul').eq(parentIndex-1).find('#element').last().remove();
-                    dashElementHandler[parentIndex-1]--;
-                    makeDisabledAble(addElement);
+                    btnSitControl('#removeElement', false);
                 }
             });
 
-            // Button functions out dash
-            $('#createNewDash').click(function(event){
-                event.preventDefault();
-
-                $('.dashboard').first().clone().appendTo('.dashes');
-                
-                createFive($(newDash));
-            });
         });
-
     </script>
 </body>
 </html>

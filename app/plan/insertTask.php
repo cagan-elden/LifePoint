@@ -2,56 +2,69 @@
 
 session_start();
 
-include '../../messages.php';
+$date = new DateTime();
+$date = $date->format('d.m.Y');
 
-function checkIsset($values) {
-    foreach ($values as $value) {
-        if (!isset($value)) {
-            setErrorMessage('Please fill out all required fields.');
-            return false;
-        }
-    }
-    return true;
+function isValidTimeFormat($time, $format = 'H.i') {
+    $dateTime = DateTime::createFromFormat($format, $time);
+    return $dateTime && $dateTime->format($format) === $time;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SESSION && $_SESSION['userId']) {
-    // Protection
-    $honeypots = array('joeMama','upperClassman','impostorSyndrome','janePapa','frenchBall');
-    foreach ($honeypots as $pot) { if (isset($_POST[$pot])) { setErrorMessage('Bot detected...'); exit; } }
+if ($_SESSION['userId']) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-   $dates   = count($_POST['date']); 
-   $chores  = count($_POST['chore']);
-   $times   = count($_POST['time']);
-   $amounts = count($_POST['amount']);
+        // Cybersecurity
+        $honeypotArr = ['joeMama', 'upperClassman', 'impostorSyndrome', 'janePapa', 'frenchBall'];
+        foreach ($honeypotArr as $pot) {
+            if (!empty($_POST[$pot])) {
+                exit;
+            }
+        }
 
-   if ($chores !== 0 && $times !== 0 && $dates !== 0 && $times === $chores && $amounts !== 0 && checkIsset($_POST) === true) {
-        include '../../databaseConn.php';
+        if (!empty($_POST)) {
+            $timeArr = isset($_POST['time']) ? (array)$_POST['time'] : [];
+            $choreArr = isset($_POST['chore']) ? (array)$_POST['chore'] : [];
+            
+            $itemNum = count($timeArr);
 
-        try {
-            $conn->beginTransaction();
+            for ($i=0; $i < $itemNum; $i++) {
+                if ($_POST['time'][$i] == '' && $_POST['chore'][$i] == '') {
+                    continue;
+                }
 
-            for ($i = 0; $i < $dates; $i++) {
-                $amount = $_POST['amount'][$i];
-                for ($k = 0; $k < $amount; $k++) {
-                    $date  = $_POST['date'][$i];
-                    $chore = $_POST['chore'][$k];
-                    $time  = $_POST['time'][$k];
+                if ($_POST['time'][$i] == '' && $_POST['chore'][$i] != '' || $_POST['time'][$i] != '' && $_POST['chore'][$i] == '') {
+                    echo 'Chore or time cannot be left blank ...';
+                } else {
+                    $times = explode(' - ', $_POST['time'][$i]);
 
-                    $query = "INSERT INTO chore (date, chore, time, status, userId) VALUES (:date, :chore, :time, 'not', :user)";
-                    $insertChore = $conn->prepare($query);
-                    $insertChore->bindParam(':date', $date, PDO::PARAM_STR);
-                    $insertChore->bindParam(':chore', $chore, PDO::PARAM_STR);
-                    $insertChore->bindParam(':time', $time, PDO::PARAM_STR);
-                    $insertChore->bindParam(':user', $_SESSION['userId'], PDO::PARAM_STR);
-                    $insertChore->execute();
+                    for ($j=0; $j < 2; $j++) { 
+                        if (!isValidTimeFormat($times[$j])) {
+                            exit('Invalid time format ...');
+                        }
+                    }
+
+                    $stripChore = strip_tags($_POST['chore'][$i]);
+                    $stripTime = strip_tags($_POST['time'][$i]);
+
+                    $query = 'INSERT INTO chore (chore, status, time, date, userId) VALUES (:chore, "not", :time, :date, :userId)';
+                    $insertItem = $conn->prepare($query);
+                    $insertItem->bindParam(':chore', $stripChore, PDO::PARAM_STR);
+                    $insertItem->bindParam(':time', $stripTime, PDO::PARAM_STR);
+                    $insertItem->bindParam(':date', $date, PDO::PARAM_STR);
+                    $insertItem->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
+                    $insertItem->execute();
                 }
             }
 
-            $conn->commit();
-            header ('location: ../../dashboard.php');
-            exit;
-        } catch (PDOException $e) { $conn->rollBack(); setErrorMessage('Error: There was an error occured during inserting data...'); }
-   } else { setErrorMessage('There should be at least one chore, time and date.'); header ('location: '.$_SERVER['HTTP_REFERER']); exit; }
-} else { header ('location: '.$_SERVER['HTTP_REFERER']); }
+        } else {
+            echo "You can't leave all blank ...";
+        }
+
+    } else {
+        echo 'Server request method must be POST ...';
+    }
+} else {
+    echo 'User login required ...';
+}
 
 ?>

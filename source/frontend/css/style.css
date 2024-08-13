@@ -612,17 +612,21 @@ html, body {
     height: 21.5em;
     width: 20em;
 }
-.dashboard#newDashDash .button {
+
+.dashContainer #submit {
     font-family: verdana;
     font-size: 16px;
     border: none;
+    margin-top: 0.75em;
     padding: 0.75em;
     background-color: #eee;
     color: #313638;
+    box-shadow: 3px 3px 3px #ccc;
     width: 75%;
     border-radius: 0.75em;
     cursor: pointer;
+    width: 23.5em;
 }
-.dashboard#newDashDash .button:hover {
+.dashboardContainer #submit:hover {
     background-color: #ccc;
 }
