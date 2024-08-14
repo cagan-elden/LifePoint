@@ -5,6 +5,8 @@ session_start();
 $date = new DateTime();
 $date = $date->format('d.m.Y');
 
+include '../../databaseConn.php';
+
 function isValidTimeFormat($time, $format = 'H.i') {
     $dateTime = DateTime::createFromFormat($format, $time);
     return $dateTime && $dateTime->format($format) === $time;
@@ -53,6 +55,12 @@ if ($_SESSION['userId']) {
                     $insertItem->bindParam(':date', $date, PDO::PARAM_STR);
                     $insertItem->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
                     $insertItem->execute();
+
+                    if ($insertItem) {
+                        header('location: '.$_SERVER['HTTP_REFERER']);
+                    } else {
+                        exit('An error occured while submiting your plan, please try again ...');
+                    }
                 }
             }
 

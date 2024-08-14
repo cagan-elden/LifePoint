@@ -52,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['date']) && isset($_GET[
                 for (var i=0; i < 4; i++) {
                     var newElement = $('#element').clone().first();
                     newElement.appendTo('.dashBody ul');
+                    newElement.find('.time').val('');
+                    newElement.find('.detail').val('');
                 }
             }
 
@@ -67,9 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['date']) && isset($_GET[
             $('#addNewElement').click(function(event){
                 event.preventDefault();
 
-                if (counter <= 9) {
+                if (counter <= 14) {
                     var element = $('#element').clone().first();
                     element.appendTo('.dashBody ul');
+                    element.find('.time').val('');
+                    element.find('.detail').val('');
 
                     btnSitControl('#removeElement', true);
                     counter++;

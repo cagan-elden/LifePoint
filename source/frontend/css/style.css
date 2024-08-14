@@ -529,18 +529,40 @@ html, body {
     list-style: none;
     margin-left: -1.75em;
 }
-.diaryRightContainer .dashboardDay .dashboardDayBody #element #time {
+.diaryRightContainer .dashboardDay .dashboardDayBody #element .time {
     background-color: green;
     padding: 0.5em;
     border-radius: 0.5em;
 }
-.diaryRightContainer .dashboardDay .dashboardDayBody #element #detail {
+.diaryRightContainer .dashboardDay .dashboardDayBody #element .detail {
     margin-left: 10em;
 }
 
 /* Plan CSS */
 .container .center .dashboard {
     background-color: whitesmoke;
+}
+.container .center .dashboard .dashBody {
+    min-height: 5em;
+    max-height: 30em;
+    overflow-y: scroll;
+}
+.container .center .dashboard .dashBody::-webkit-scrollbar {
+    width: 12px;
+}
+
+.container .center .dashboard .dashBody::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.container .center .dashboard .dashBody::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.container .center .dashboard .dashBody::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 .container .center .dashboard .dashBody #element {
     list-style: none;
