@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['date']) && isset($_GET[
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LifePoint - Plan</title>
 
     <!-- CSS Imports -->
      <link rel="stylesheet" href="../source/frontend/css/style.css">

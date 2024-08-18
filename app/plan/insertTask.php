@@ -7,7 +7,7 @@ $date = $date->format('d.m.Y');
 
 include '../../databaseConn.php';
 
-function isValidTimeFormat($time, $format = 'H.i') {
+function isValidTimeFormat($time, $format = 'H:i') {
     $dateTime = DateTime::createFromFormat($format, $time);
     return $dateTime && $dateTime->format($format) === $time;
 }

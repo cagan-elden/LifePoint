@@ -208,6 +208,8 @@ html, body {
     background-color: whitesmoke;
     border-bottom-left-radius: 0.75em;
     border-bottom-right-radius: 0.75em;
+    overflow-y: scroll;
+    height: 13.5em;
 }
 .center .dashBody #dashItem {
     list-style: none;
@@ -651,4 +653,11 @@ html, body {
 }
 .dashboardContainer #submit:hover {
     background-color: #ccc;
+}
+.dashboard #spanHref {
+    color: blue;
+    text-decoration: none;
+}
+.dashboard #spanHref:hover {
+    text-decoration: underline;
 }

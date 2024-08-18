@@ -18,7 +18,7 @@ if (empty($_SESSION['csrf_token'])) {
                             </div>
                             <div class="dashBody">
                                 <ul>
-                                    <li id="element"><input type="text" class="time" name="time[]" placeholder="Enter time" autofill="false"><input type="text" class="detail" name="chore[]" placeholder="Enter detail" autofill='false'></li>
+                                    <li id="element"><input type="text" class="time" name="time[]" placeholder="Enter time" autocomplete="off"><input type="text" class="detail" name="chore[]" placeholder="Enter detail" autocomplete="off"></li>
                                 </ul>
                                 <button id="addNewElement" class="button">+ Add new task</button>
                                 <button id="removeElement" class="button">- Remove a task</button>

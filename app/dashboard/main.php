@@ -3,6 +3,7 @@
         <span id="welcome">Good to see you <?php echo $_SESSION['displayName'] ?>!</span>
         <?php include "friendDash.php"; ?>
     </div>
+
     <div class="dashContainer">
         <?php
         
