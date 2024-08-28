@@ -16,7 +16,7 @@ if (empty($_SESSION['csrf_token'])) {
                             <div class="dashHeader">
                                 <h2 id="dashTitle"><?php echo $date; ?></h2>
                             </div>
-                            <div class="dashBody">
+                            <div class="dashBody" id="plan">
                                 <ul>
                                     <li id="element"><input type="text" class="time" name="time[]" placeholder="Enter time" autocomplete="off"><input type="text" class="detail" name="chore[]" placeholder="Enter detail" autocomplete="off"></li>
                                 </ul>

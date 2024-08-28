@@ -544,8 +544,8 @@ html, body {
 .container .center .dashboard {
     background-color: whitesmoke;
 }
-.container .center .dashboard .dashBody {
-    min-height: 5em;
+.container .center .dashboard .dashBody#plan {
+    min-height: 18em;
     max-height: 30em;
     overflow-y: scroll;
 }

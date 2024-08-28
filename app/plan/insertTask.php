@@ -29,39 +29,45 @@ if ($_SESSION['userId']) {
             
             $itemNum = count($timeArr);
 
-            for ($i=0; $i < $itemNum; $i++) {
-                if ($_POST['time'][$i] == '' && $_POST['chore'][$i] == '') {
-                    continue;
-                }
+            try {
+                $conn->beginTransaction();
 
-                if ($_POST['time'][$i] == '' && $_POST['chore'][$i] != '' || $_POST['time'][$i] != '' && $_POST['chore'][$i] == '') {
-                    echo 'Chore or time cannot be left blank ...';
-                } else {
-                    $times = explode(' - ', $_POST['time'][$i]);
-
-                    for ($j=0; $j < 2; $j++) { 
-                        if (!isValidTimeFormat($times[$j])) {
-                            exit('Invalid time format ...');
-                        }
+                for ($i=0; $i < $itemNum; $i++) {
+                    if ($_POST['time'][$i] == '' && $_POST['chore'][$i] == '') {
+                        continue;
                     }
-
-                    $stripChore = strip_tags($_POST['chore'][$i]);
-                    $stripTime = strip_tags($_POST['time'][$i]);
-
-                    $query = 'INSERT INTO chore (chore, status, time, date, userId) VALUES (:chore, "not", :time, :date, :userId)';
-                    $insertItem = $conn->prepare($query);
-                    $insertItem->bindParam(':chore', $stripChore, PDO::PARAM_STR);
-                    $insertItem->bindParam(':time', $stripTime, PDO::PARAM_STR);
-                    $insertItem->bindParam(':date', $date, PDO::PARAM_STR);
-                    $insertItem->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
-                    $insertItem->execute();
-
-                    if ($insertItem) {
-                        header('location: '.$_SERVER['HTTP_REFERER']);
+    
+                    if ($_POST['time'][$i] == '' && $_POST['chore'][$i] != '' || $_POST['time'][$i] != '' && $_POST['chore'][$i] == '') {
+                        echo 'Chore or time cannot be left blank ...';
                     } else {
-                        exit('An error occured while submiting your plan, please try again ...');
+                        $times = explode(' - ', $_POST['time'][$i]);
+    
+                        for ($j=0; $j < 2; $j++) { 
+                            if (!isValidTimeFormat($times[$j])) {
+                                exit('Invalid time format ...');
+                            }
+                        }
+    
+                        $stripChore = strip_tags($_POST['chore'][$i]);
+                        $stripTime = strip_tags($_POST['time'][$i]);
+    
+                        $query = 'INSERT INTO chore (chore, status, time, date, userId) VALUES (:chore, "not", :time, :date, :userId)';
+                        $insertItem = $conn->prepare($query);
+                        $insertItem->bindParam(':chore', $stripChore, PDO::PARAM_STR);
+                        $insertItem->bindParam(':time', $stripTime, PDO::PARAM_STR);
+                        $insertItem->bindParam(':date', $date, PDO::PARAM_STR);
+                        $insertItem->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
+                        $insertItem->execute();
                     }
                 }
+
+                $conn->commit();
+                
+                header('location: '.$_SERVER['HTTP_REFERER']);
+                exit;
+            } catch (Exception $e) {
+                $conn->rollBack();
+                exit('An error occured: '.$e->getMessage());
             }
 
         } else {
