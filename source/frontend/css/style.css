@@ -711,6 +711,11 @@ html, body {
     border-bottom-left-radius: 0.75em;
     border-bottom-right-radius: 0em;
 }
+.doubleDashboard .dashD#left #pointAchieve {
+    margin-left: 26em;
+    font-family: arial;
+    font-size: 17px;
+}
 .doubleDashboard .dashD ul li#dashItem {
     list-style: none;
     margin-bottom: 0.75em;

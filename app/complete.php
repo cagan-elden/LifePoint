@@ -16,6 +16,8 @@ $date = $date->format('d.m.Y');
     <title>LifePoint - Day Review</title>
 
     <link rel="stylesheet" href="../source/frontend/css/style.css">
+
+    <script src="../source/library/jquery.js"></script>
 </head>
 <body>
     <div class="container">
@@ -50,6 +52,25 @@ $date = $date->format('d.m.Y');
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.check').on('click', function(event){
+                var point = parseInt($('#point').text());
+                var i = $('.check').index(this);
+
+                console.log(i);
+
+                if ($(this).prop('checked')) {
+                    $('.time').eq(i).css('background-color', 'lightgreen');
+                    $('#point').text(point + 5);
+                } else {
+                    $('.time').eq(i).css('background-color', '#ccc');
+                    $('#point').text(point - 5);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

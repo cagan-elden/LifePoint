@@ -8,13 +8,15 @@
             </div>
 
             <div class="dashBody">
+                <span id="pointAchieve">Points: <b id="point">0</b></span>
+
                 <ul>
                     <?php
                         foreach ($choreArr as $chore) {
                             ?>
                                 <li id="dashItem">
-                                    <input type="checkbox" name="done[]" id="checkChore">
-                                    <span id="time"><?php echo $chore['time']; ?></span>
+                                    <input type="checkbox" name="done[]" class="check" id="checkChore">
+                                    <span id="time" class="time"><?php echo $chore['time']; ?></span>
                                     <span id="detail"><?php echo $chore['chore']; ?></span>
                                 </li>
                             <?php   
