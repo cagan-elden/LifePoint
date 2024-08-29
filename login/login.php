@@ -2,7 +2,7 @@
 
 include '../databaseConn.php';
 
-if (isset($_COOKIE['remember_token'])) {
+if (isset($_COOKIE['remember_token']) && isset($_COOKIE['user_id'])) {
     include 'autoLogin.php';
 }
 
