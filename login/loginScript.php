@@ -44,21 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userDB->execute();
             $user = $userDB->fetch(PDO::FETCH_ASSOC);
 
-            if ($remember) {
-                // Create Remember Tokens
-                $token = bin2hex(random_bytes(16));
-                $tokenHash = password_hash($token, PASSWORD_DEFAULT);
-                $expire = date("Y-m-d H:i:s", strtotime("+30 days"));
-    
-                $query = "UPDATE user SET rememberToken=:token, rememberTokenExpire=:expire WHERE userId=:id";
-                $insertToken = $conn->prepare($query);
-                $insertToken->bindParam(':token', $tokenHash, PDO::PARAM_STR);
-                $insertToken->bindParam(':expire', $expire, PDO::PARAM_STR);
-                $insertToken->bindParam(':id', $user['userId'], PDO::PARAM_INT);
-                $insertToken->execute();
-    
-                setcookie('remember_token', $token, time() + (86400 * 30), "/", "", true, true);
-            }
             // Create Session Tokens
             session_start();
             session_regenerate_id(true);
@@ -71,6 +56,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['lifePoint']   = $user['lifePoint'];
             $_SESSION['daystreak']   = $user['daystreak'];
             $_SESSION['type']        = $user['type'];
+
+            if ($remember) {
+                // Create Remember Tokens
+                $token = bin2hex(random_bytes(16));
+                $tokenHash = password_hash($token, PASSWORD_DEFAULT);
+                $expire = date("Y-m-d H:i:s", strtotime("+30 days"));
+    
+                $query = "UPDATE user SET rememberToken=:token, rememberTokenExpire=:expire WHERE userId=:id";
+                $insertToken = $conn->prepare($query);
+                $insertToken->bindParam(':token', $token, PDO::PARAM_STR);
+                $insertToken->bindParam(':expire', $expire, PDO::PARAM_STR);
+                $insertToken->bindParam(':id', $user['userId'], PDO::PARAM_INT);
+                $insertToken->execute();
+    
+                setcookie('remember_token', $tokenHash, time() + (86400 * 30), "/", "", true, true);
+                setcookie('user_id', $_SESSION['userId'], time() + (86400 * 30), "/", "", true, true);
+            }
 
             header('location: ../app/dashboard.php');
             exit;

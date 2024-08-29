@@ -1,3 +1,13 @@
+<?php
+
+include '../databaseConn.php';
+
+if (isset($_COOKIE['remember_token'])) {
+    include 'autoLogin.php';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +22,6 @@
     <div class="container">
         <?php
         include "header.htm";
-        include '../databaseConn.php';
         include '../messages.php';
         displayErrorMessage();
         include 'loginScript.php';
