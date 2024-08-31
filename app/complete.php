@@ -56,7 +56,8 @@ $date = $date->format('d.m.Y');
     <script>
         $(document).ready(function() {
             let wasAchieveTrue = false;
-            
+            let pointAchieve = false;
+
             $('.check').on('click', function(event){
                 var point = parseInt($('#point').text());
                 var i = $('.check').index(this);
@@ -86,19 +87,21 @@ $date = $date->format('d.m.Y');
                 var str2 = "words untill prize";
 
                 if (wordCount <= 0) {
-                    sixtyAchieve = true;
                     $('#wordPrize').text("Prize guarenteed");
 
-                    if (wasAchieveTrue === false) {
+                    if (!wasAchieveTrue) {
                         $('#point').text(point + 25);
                         wasAchieveTrue = true;
+                        pointAchieve = true;
                     }
                 } else {
                     $('#wordPrize').text(str1.concat(" ", str2));
 
-                    if (wasAchieveTrue === true) {
+                    if (wasAchieveTrue && pointAchieve) {
                         $('#point').text(point - 25);
+                        pointAchieve = false;
                     }
+                    wasAchieveTrue = false;
                 }
 
                 // Characters
