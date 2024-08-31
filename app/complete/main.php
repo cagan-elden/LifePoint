@@ -34,6 +34,12 @@
 
             <div class="dashBody">
                 <textarea name="entry" id="journal" placeholder="Write your day ..." rows=22 cols=50></textarea>
+                <div class="leftRight">
+                    <div class="right">
+                        <span id="wordPrize">60 words untill prize</span>
+                        <span id="characterLeft">750/750 characters left</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

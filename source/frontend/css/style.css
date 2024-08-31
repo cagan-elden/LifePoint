@@ -763,6 +763,27 @@ html, body {
     outline: 3px solid #96c5cb;
     outline-offset: 2px;
 }
+.doubleDashboard .dashD#right .dashBody .leftRight {
+    margin-top: -1.25em;
+    width: inherit;
+    border-top: 1px solid #ccc;
+    background-color: ghostwhite;
+    border-bottom-left-radius: 0.75em;
+    border-bottom-right-radius: 0.75em;
+}
+.doubleDashboard .dashD#right .dashBody .leftRight #wordPrize {
+    font-family: arial;
+    font-size: 13px;
+    margin-right: 0.75em;
+}
+.doubleDashboard .dashD#right .dashBody .leftRight #characterLeft {
+    font-family: arial;
+    font-size: 13px;
+}
+.doubleDashboard .dashD#right .dashBody .leftRight .right {
+    float: right;
+    margin-right: 0.5em;
+}
 
 /* For submit */
 .dashboard #submit:hover {
