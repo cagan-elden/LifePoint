@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li id="dropdownItem"><a href="#">Settings</a></li>
-                    <li id="dropdownItem" style="border-bottom-left-radius: 0.75em; border-bottom-right-radius: 0.75em;"><a href="#">Exit</a></li>
+                    <li id="dropdownItem" style="border-bottom-left-radius: 0.75em; border-bottom-right-radius: 0.75em;"><a href="script/php/exit.php">Exit</a></li>
                 </ul>
              </div>
         </div>
