@@ -48,8 +48,21 @@ $choreExist = $getDay->rowCount();
                         foreach ($chores as $chore) {
                             ?>
                             <li id="dashItem">
-                                <span id="time"><?php echo $chore['time']; ?></span>
-                                <?php echo $chore['chore']; ?>
+                                <?php
+
+                                    if ($chore['status'] == "done") {
+                                        ?>
+                                        <span id="time" style="background-color: lightgreen;"><?php echo $chore['time']; ?></span>
+                                        <?php 
+                                    } else { 
+                                        ?>
+                                        <span id="time"><?php echo $chore['time']; ?></span>
+                                        <?php
+                                    }
+                                    
+                                    echo $chore['chore'];
+
+                                ?>
                             </li>
                             <?php
                         }
