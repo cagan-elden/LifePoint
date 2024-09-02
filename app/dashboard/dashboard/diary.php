@@ -1,3 +1,13 @@
+<?php
+
+$query = "SELECT * FROM diary WHERE userId=:id";
+$getJournal = $conn->prepare($query);
+$getJournal->bindParam(':id', $_SESSION['userId'], PDO::PARAM_INT);
+$getJournal->execute();
+$journal = $getJournal->fetch(PDO::FETCH_ASSOC);
+
+?>
+
 <div class="dashboard">
     <div class="dashHeader">
         <h2 id="dashTitle">Diary</h2>
@@ -6,10 +16,10 @@
         </a>
     </div>
     <div class="dashBody" id="diaryBody">
-        <span id="date">21.08.2024</span>
+        <span id="date"><?php echo $journal['date'] ?></span>
         <p id="diaryText">
         <?php
-            echo substr('Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta vero nobis architecto voluptates illum explicabo, suscipit in recusandae expedita molestias excepturi, accusamus dolorem quaerat, et placeat corporis iste exercitationem reprehenderit.', 0, 100)
+            echo substr($journal['diary'], 0, 100)
         ?>
         ...
         </p>
