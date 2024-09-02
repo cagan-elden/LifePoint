@@ -118,6 +118,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $updateUser->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
         $updateUser->execute();
 
+        $_SESSION['lifePoint'] = $point;
+
         header('location: ../../dashboard.php');
         exit;
     } catch (\Throwable $th) {
