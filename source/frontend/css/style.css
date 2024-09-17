@@ -12,6 +12,31 @@ html, body {
     background-color: #ddd;
 }
 
+/* server message */
+.serverMessage {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 3px 3px 3px #ccc;
+    width: max-content;
+}
+
+.serverMessage#error {
+    background-color: salmon;
+
+}
+.serverMessage#warning {
+    background-color: whitesmoke;
+}
+
+.serverMessage #icon {
+    width: 3em;
+}
+.serverMessage #message {
+    font-family: arial;
+    font-size: 14px;
+}
+
 /* Header */
 .header {
     background-color: white;

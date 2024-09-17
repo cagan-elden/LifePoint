@@ -28,7 +28,11 @@ switch ($page) {
         $isFriend = $checkFriend->rowCount();
 
         if ($isPrivate['type'] == 'private' && $_SESSION['userId'] != $user && $isFriend != 1) {
-            echo 'this acount is private...';
+            ?>
+            <div class="serverMessage" id="warning">
+                <span id="message">This account is private...</span>
+            </div>
+            <?php
         } elseif ($isPrivate['type'] == 'ban') {
             echo 'this acount is banned...';
         }
