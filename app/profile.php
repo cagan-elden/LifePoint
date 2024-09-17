@@ -5,68 +5,66 @@ ini_set('display_errors', 1);
 
 session_start();
 
-$user = $_GET['user'];
+$page = $_GET['page'];
 
-if (ctype_digit($user) && isset($_SESSION['userId'])) {
+switch ($page) {
+    case 'profile':
 
-    intval($user);
-    strval($user);
+        include "../databaseConn.php";
 
-    include "../databaseConn.php";
+        $user = $_GET['id'];
 
-    $query = 'SELECT type FROM user WHERE userId=:id';
-    $getInfo = $conn->prepare($query);
-    $getInfo->bindParam(':id', $_SESSION['userId'], PDO::PARAM_INT);
-    $getInfo->execute();
-    
-    $doesExist = $getInfo->rowCount();
+        $query = "SELECT type FROM user WHERE userId=:id";
+        $checkPrivate = $conn->prepare($query);
+        $checkPrivate->bindParam(':id', $user, PDO::PARAM_INT);
+        $checkPrivate->execute();
+        $isPrivate = $checkPrivate->fetch(PDO::FETCH_ASSOC);
 
-    if (!$doesExist) {
-        echo "This acount does not exist...";
-        exit;
-    }
+        $query = "SELECT * FROM friend WHERE friendOutro=:client AND friendIntro=:content OR friendOutro=:content AND friendIntro=:client";
+        $checkFriend = $conn->prepare($query);
+        $checkFriend->bindParam(':client', $_SESSION['userId'], PDO::PARAM_INT);
+        $checkFriend->bindParam(':content', $user, PDO::PARAM_INT);
+        $checkFriend->execute();
+        $isFriend = $checkFriend->rowCount();
 
-    $privateOrNot = $getInfo->fetch(PDO::FETCH_ASSOC);
+        if ($isPrivate['type'] == 'private' && $_SESSION['userId'] != $user && $isFriend != 1) {
+            echo 'this acount is private...';
+        } elseif ($isPrivate['type'] == 'ban') {
+            echo 'this acount is banned...';
+        }
 
-    if ($privateOrNot['type'] == 'private') {
-        echo "This acount is private...";
-    }
-    
-    $banners = ['banner1.jpg','banner2.jpg','banner3.jpg','banner4.jpg','banner5.jpg','banner6.jpg','banner7.jpg','banner8.jpg','banner9.jpg','banner10.jpg','banner11.jpg'];
-    
-    $bannerOnScreen = rand(0, 10);
-    
-    ?>
-    
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>lifePoint - Profile</title>
-    
-        <link rel="stylesheet" href="../source/frontend/css/style.css">
-    </head>
-    <body>
-        <div class="container">
-        <?php
-    
-            include "header.php";
-            include "profile/main.php";
-    
         ?>
-        </div>
-    
-        <script src="../source/frontend/javascript/headerDropdownMenu.js"></script>
-        <script src="../source/frontend/javascript/profilePicBigger.js"></script>
-    
-        <!-- Dialog to make profile photo bigger. -->
-        <dialog id="pfpBigDialog">
-            <img src="<?php echo $_SESSION['profilePic']; ?>" alt="" id="profilePic">
-        </dialog>
-    </body>
-    </html>
+            
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>lifePoint - Profile</title>
+            
+            <link rel="stylesheet" href="../source/frontend/css/style.css">
+        </head>
+        <body>
+            <div class="container">
+            <?php
+            
+                include "header.php";
+                include "profile/main.php";
+            
+            ?>
+            </div>
+            
+            <script src="../source/frontend/javascript/headerDropdownMenu.js"></script>
+            <script src="../source/frontend/javascript/profilePicBigger.js"></script>
+            
+            <!-- Dialog to make profile photo bigger. -->
+            <dialog id="pfpBigDialog">
+                <img src="<?php echo $_SESSION['profilePic']; ?>" alt="" id="profilePic">
+            </dialog>
+        </body>
+        </html>
+<?php
 
-    <?php
+    }
 
-}
+?>
