@@ -1,9 +1,12 @@
 <div class="profileHeader">
     <img src="<?php echo $_SESSION['profilePic'] ?>" alt="" id="pfp">
     <div class="headerDetailContainer">
-        <h2 id="displayName"><?php echo $_SESSION['displayName'] ?></h2>
-        <span id="username"><?php echo $_SESSION['username'] ?></span>
-        <span id="point"><?php echo $_SESSION['lifePoint'] ?> pts</span>
+        <div class="left">
+            <h2 id="displayName"><?php echo $isPrivate['displayName'] ?></h2>
+            <span id="username"><?php echo $isPrivate['username'] ?></span>
+            <span id="point"><?php echo $isPrivate['lifePoint'] ?> pts</span>
+        </div>
+        <div class="sendFriend">Send Request</div>
     </div>
 </div>
 

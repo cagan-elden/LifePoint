@@ -4,7 +4,18 @@
             <?php
             
             include "profileHeader.php";
-            include "profileBody.php";
+
+            if ($isPrivate['type'] == 'private' && $_SESSION['userId'] != $user && !$friend) {
+                ?>
+                
+                <div class="containerMessage">
+                    <span id="message">This account is private, unauthorized access ...</span>
+                </div>
+                
+                <?php
+            } else {
+                include "profileBody.php";
+            }
 
             ?>
         </div>

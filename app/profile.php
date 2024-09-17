@@ -14,7 +14,7 @@ switch ($page) {
 
         $user = $_GET['id'];
 
-        $query = "SELECT type FROM user WHERE userId=:id";
+        $query = "SELECT type,username,lifePoint,displayName FROM user WHERE userId=:id";
         $checkPrivate = $conn->prepare($query);
         $checkPrivate->bindParam(':id', $user, PDO::PARAM_INT);
         $checkPrivate->execute();
@@ -27,18 +27,13 @@ switch ($page) {
         $checkFriend->execute();
         $isFriend = $checkFriend->rowCount();
 
-        if ($isPrivate['type'] == 'private' && $_SESSION['userId'] != $user && $isFriend != 1) {
-            ?>
-            <div class="serverMessage" id="warning">
-                <span id="message">This account is private...</span>
-            </div>
-            <?php
-        } elseif ($isPrivate['type'] == 'ban') {
-            echo 'this acount is banned...';
+        $friend=false;
+        if ($isFriend != 0) {
+            $friend=true;
         }
 
         ?>
-            
+
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -51,10 +46,15 @@ switch ($page) {
         <body>
             <div class="container">
             <?php
-            
+
+            if ($isPrivate['type'] == 'private' && $_SESSION['userId'] != $user || $isFriend != 1) {
                 include "header.php";
                 include "profile/main.php";
-            
+            } elseif ($isPrivate['type'] == 'ban') {
+                include "header.php";
+                include "profile/main.php";
+            }
+
             ?>
             </div>
             
