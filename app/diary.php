@@ -59,25 +59,8 @@ $entryNum = $getEntry->rowCount();
     <script src="../source/frontend/javascript/headerDropdownMenu.js"></script>
     <script src="../source/frontend/javascript/diaryDialog.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            $('.diaryButton').click(function(){
-                var diaryId = $(this).data('id');
-
-                $.ajax({
-                    url: 'diary.php',
-                    method: 'POST',
-                    data: {id: diaryId},
-                    success: function(response) {
-                        $('#textHere').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error Message: ',error);
-                    }
-                });
-            });
-        });
-    </script>
+    <!-- JQuery/Ajax --> 
+    <script src="../source/frontend/jquery/getDiaryAjaxScript.js"></script>
 
 </body>
 </html>

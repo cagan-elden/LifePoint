@@ -53,6 +53,7 @@ $date = $date->format('d.m.Y');
         </div>
     </div>
 
+    <!-- JQuery -->
     <script src="../source/frontend/jquery/diaryWritingScript.js"></script>
 
 </body>
