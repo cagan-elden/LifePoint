@@ -7,7 +7,16 @@
             <span id="point"><?php echo $isPrivate['lifePoint'] ?> pts</span>
         </div>
         <div class="sendFriend">
-            <button href="#" id="beFriend">Send Request</button>
+            <?php
+            
+            // Check if the client is the user or the friend.
+            if ($_SESSION['userId'] != $user && $isFriend != 1) {
+                ?> <button href="#" id="beFriend">Send Request</button> <?php
+            } else if ($isFriend == 1) {
+                ?> <button href="#" id="beFriend">Unfollow</button> <?php
+            }
+            
+            ?>
         </div>
     </div>
 </div>
