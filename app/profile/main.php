@@ -9,7 +9,8 @@
                 ?>
                 
                 <div class="containerMessage">
-                    <span id="message">This account is private, unauthorized access ...</span>
+                    <img src="../source/image/mainApp/eyeDisabledBlack.svg" alt="" id="icon" draggable="false">
+                    <span id="message">This account is private. Be friends to access the profile.</span>
                 </div>
                 
                 <?php

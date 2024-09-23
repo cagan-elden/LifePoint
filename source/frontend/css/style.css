@@ -436,6 +436,20 @@ html, body {
     height: initial;
 }
 
+.profile .containerMessage {
+    align-items: center;
+    text-align: center;
+    margin-top: 25%;
+}
+.profile .containerMessage #icon {
+    width: 2em;
+    height: initial;
+}
+.profile .containerMessage #message {
+    font-family: verdana;
+    font-size: 15px;
+}
+
 /* diary */
 .diaryLeftContainer {
     float: left;
