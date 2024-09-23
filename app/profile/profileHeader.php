@@ -6,7 +6,9 @@
             <span id="username"><?php echo $isPrivate['username'] ?></span>
             <span id="point"><?php echo $isPrivate['lifePoint'] ?> pts</span>
         </div>
-        <div class="sendFriend">Send Request</div>
+        <div class="sendFriend">
+            <button href="#" id="beFriend">Send Request</button>
+        </div>
     </div>
 </div>
 

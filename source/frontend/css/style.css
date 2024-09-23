@@ -347,11 +347,24 @@ html, body {
 }
 .center .profileHeader .headerDetailContainer .sendFriend {
     width: max-content;
-    background-color: white;
     display: block;
     float: left;
     margin-top: 2em;
     margin-left: 0.75em;
+}
+.center .profileHeader .headerDetailContainer .sendFriend #beFriend {
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    margin-top: 0.85em;
+    padding: 0.5em;
+    font-family: arial;
+    font-size: 13px;
+    box-shadow: 2px 2px 2px #ccc;
+}
+.center .profileHeader .headerDetailContainer .sendFriend #beFriend:hover {
+    cursor: pointer;
+    background-color: #d8d8d8;
+    transition: background-color 0.5s;
 }
 .center .profile .profileHeader #displayName {
     font-family: verdana;
