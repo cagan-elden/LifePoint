@@ -40,7 +40,7 @@
              <div class="headerDropdown" id="headerDropdown">
                 <ul>
                     <li id="dropdownItem" style="border-top-left-radius: 0.75em; border-top-right-radius: 0.75em;">
-                        <a href="profile.php?user=<?php echo $_SESSION['userId'] ?>">
+                        <a href="profile.php?page=profile&id=<?php echo $_SESSION['userId'] ?>">
                             <img src="<?php echo $_SESSION['profilePic'] ?>" alt="" id="pfp">
                             <b>Profile</b>
                             <br>
