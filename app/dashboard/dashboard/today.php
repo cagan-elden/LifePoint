@@ -2,10 +2,12 @@
 
 include '../databaseConn.php';
 
+// What this function does is basically that it checks if the dashboard is in the profile or
+// in the dashboard and depending on that showing a value.
 function todayType($type) {
     include '../databaseConn.php';
 
-    if ($type == 'dashboard') { $user = $_SESSION['userId']; } else if($type == 'profile') { $user = $user; }
+    if ($type == 'dashboard') { $user=$_SESSION['userId']; } else if($type == 'profile') { $user=$user; }
 
     $date = new DateTime();
     $date = $date->format('d.m.Y');
@@ -89,6 +91,4 @@ function todayType($type) {
 
 <?php
 }
-
-todayType('dashboard');
 ?>

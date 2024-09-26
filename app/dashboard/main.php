@@ -8,8 +8,13 @@
         <?php
         
         include 'dashboard/dashboard/today.php';
+        todayType('dashboard');
+
         include 'dashboard/dashboard/tomorrow.php';
+
         include 'dashboard/dashboard/diary.php';
+        journalType('dashboard');
+
         include 'dashboard/dashboard/month.php';
         include 'dashboard/dashboard/yearAgo.php';
         include 'dashboard/dashboard/album.php';
