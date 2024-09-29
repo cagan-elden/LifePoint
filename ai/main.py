@@ -1,5 +1,4 @@
 import dbConn
-import mysql.connector
 
 conn = dbConn.conn()
 
