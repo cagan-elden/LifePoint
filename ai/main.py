@@ -1,17 +1,26 @@
 import dbConn
+from flask import Flask, request
 
-conn = dbConn.conn()
+app = Flask(__name__)
 
-if conn:
-    cursor = conn.cursor(dictionary=True)
+@app.route('/http://localhost/lifePoint', methods=['GET', 'POST'])
+def backendAi():
+    conn = dbConn.conn()
 
-    id=(1,)
+    if conn:
+        cursor = conn.cursor(dictionary=True)
 
-    query = "SELECT * FROM user WHERE userId=%s"
-    cursor.execute(query,id)
-    result = cursor.fetchone()
+        userId = request.cookies.get('user_id')
+        id=(userId)
 
-    print('Username: ', result['username'])
+        query = "SELECT * FROM user WHERE userId=%s"
+        cursor.execute(query,id)
+        result = cursor.fetchone()
 
-    cursor.close()
-    conn.close()
+        print(result['username'])
+
+        cursor.close()
+        conn.close()
+
+if __name__ == '__main__':
+    app.run(debug=True)
