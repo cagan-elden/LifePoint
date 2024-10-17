@@ -36,15 +36,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->beginTransaction();
 
         $point = 0;
+        $dateNum = 0;
 
         for ($i=0; $i < count($check); $i++) {
-            if ($check[$i] == 'on') { $status = 'done'; $point+=5; } else { $status = 'not'; }
+            if ($check[$i] == 'on') { $status = 'done'; $point+=5; $dateNum++; } else { $status = 'not'; }
 
             $query = "UPDATE chore SET status=:status WHERE choreId=:id";
             $updateChore = $conn->prepare($query);
             $updateChore->bindParam(':status', $status, PDO::PARAM_STR);
             $updateChore->bindParam(':id', $idArr[$i], PDO::PARAM_INT);
             $updateChore->execute();
+
+            if ($updateChore) {
+
+                $insertDate = $conn->prepare('INSERT INTO date SET date=:date, choreNum=:num, userId=:id');
+                $insertDate->bindParam(':date', $date, PDO::PARAM_STR);
+                $insertDate->bindParam(':num', $dateNum, PDO::PARAM_INT);
+                $insertDate->bindParam(':id', $_SESSION['userId'], PDO::PARAM_INT);
+                $insertDate->execute();
+
+            }
         }
 
         $conn->commit();
