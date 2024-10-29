@@ -43,7 +43,8 @@ $dateArr = array();
 
 // Sort dates if they have been done
 foreach ($dateDB as $dateToInsert) {
-    array_push($dateArr, [$dateToInsert['date'], $dateToInsert['choreNum']]);
+    $dayMonth = substr($dateToInsert['date'], 0,5);
+    array_push($dateArr, $dayMonth);
 }
 
 ?>
@@ -59,6 +60,8 @@ foreach ($dateDB as $dateToInsert) {
     <div class="dashBody">
         <?php
 
+        // Checks if the date which was done is checked or not.
+
         for ($i=0; $i < $monthDay[date('m')]; $i++) {
             $date = $i + 1;
             $date = strval($date);
@@ -67,11 +70,10 @@ foreach ($dateDB as $dateToInsert) {
                 $date = "0".$date;
             }
 
-            if (count($dateArr) != 0) {
-                if (substr($dateArr[$i],0,2) == $date) {
-                    echo "<span id='date' style='background-color: green;'>".$date."</span>";
-                    continue;
-                }
+            $dateCheck = $date.".".date('m');
+
+            if (in_array($dateCheck, $dateArr)) {
+                echo "<span id='date' style='background-color: lightgreen;'>".$date."</span>";
             }
             echo "<span id='date'>".$date."</span>";
         }
