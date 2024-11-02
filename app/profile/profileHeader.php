@@ -11,9 +11,9 @@
             
             // Check if the client is the user or the friend.
             if ($_SESSION['userId'] != $user && $isFriend != 1) {
-                ?> <button href="#" id="beFriend">Send Request</button> <?php
+                ?> <button id="sendReq">Send Request</button> <?php
             } else if ($isFriend == 1) {
-                ?> <button href="#" id="beFriend">Unfollow</button> <?php
+                ?> <button id="beFriend">Unfollow</button> <?php
             }
             
             ?>

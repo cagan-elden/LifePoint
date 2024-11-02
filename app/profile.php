@@ -27,6 +27,8 @@ switch ($page) {
         $checkFriend->execute();
         $isFriend = $checkFriend->rowCount();
 
+        echo $user;
+
         $friend=false;
         if ($isFriend != 0) {
             $friend=true;
@@ -65,6 +67,17 @@ switch ($page) {
             <dialog id="pfpBigDialog">
                 <img src="<?php echo $_SESSION['profilePic']; ?>" alt="" id="profilePic">
             </dialog>
+
+            <!-- JavaScript Imports -->
+            <!-- JQuery/Ajax -->
+             <script src="../source/library/jquery.js"></script>
+
+             <script>
+                let user = <?php echo json_encode($user); ?>;
+                console.log(user);
+            </script>
+
+             <script src="friend/sendReq.js"></script>
         </body>
         </html>
 <?php
