@@ -1,9 +1,39 @@
 <?php
 
+session_start();
+
+function sendReq() {
+    include "../databaseConn.php";
+    $accountOwner = intval($_GET['id']);
+
+    $query = "SELECT friendOutro FROM friend WHERE friendIntro=:id";
+    $getFr = $conn->prepare($query);
+    $getFr->bindParam(":id", $accountOwner, PDO::PARAM_STR);
+    $getFr->execute();
+
+    $isFriend = $getFr->rowCount();
+
+    // Checking if the user is already friend with this user.
+    if ($isFriend == 0) {
+
+        $query = "INSERT INTO notification SET notificationFrom=:from, notificationTo=:to, notificationType='friend'";
+        $sendReq = $conn->prepare($query);
+        $sendReq->bindParam(':from', intval($_SESSION['userId']), PDO::PARAM_INT);
+        $sendReq->bindParam(':to', $accountOwner, PDO::PARAM_INT);
+        $sendReq->execute();
+
+        if ($sendReq) {
+            echo "Request sent";
+        } else {
+            echo "Some error occured...";
+        }
+    }
+}
+
+sendReq();
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-session_start();
 
 $page = $_GET['page'];
 
