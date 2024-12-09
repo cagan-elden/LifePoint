@@ -27,8 +27,6 @@ switch ($page) {
         $checkFriend->execute();
         $isFriend = $checkFriend->rowCount();
 
-        echo $user;
-
         $friend=false;
         if ($isFriend != 0) {
             $friend=true;
