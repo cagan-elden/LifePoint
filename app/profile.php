@@ -17,21 +17,31 @@ function sendReq() {
     if ($isFriend == 0) {
         $sessionToInt = intval($_SESSION['userId']);
 
-        $query = "INSERT INTO notification SET notificationFrom=:from, notificationTo=:to, notificationType='friend'";
-        $sendReq = $conn->prepare($query);
-        $sendReq->bindParam(':from', $sessionToInt, PDO::PARAM_INT);
-        $sendReq->bindParam(':to', $accountOwner, PDO::PARAM_INT);
-        $sendReq->execute();
+        // DDoS protection
+        $query = "SELECT * FROM notification WHERE notificationFrom=:from AND notificationTo=:to";
+        $checkReq = $conn->prepare($query);
+        $checkReq->bindParam(":from", $sessionToInt, PDO::PARAM_INT);
+        $checkReq->bindParam(":to", $accountOwner, PDO::PARAM_INT);
+        $checkReq->execute();
+        $checkRow = $checkReq->rowCount();
 
-        if ($sendReq) {
-            echo "Request sent";
-        } else {
-            echo "Some error occured...";
+        if ($checkRow == 0) {
+            $query = "INSERT INTO notification SET notificationFrom=:from, notificationTo=:to, notificationType='friend'";
+            $sendReq = $conn->prepare($query);
+            $sendReq->bindParam(':from', $sessionToInt, PDO::PARAM_INT);
+            $sendReq->bindParam(':to', $accountOwner, PDO::PARAM_INT);
+            $sendReq->execute();
+
+            if ($sendReq) {
+                echo "Request sent";
+            } else {
+                echo "Some error occured...";
+            }
         }
     }
 }
 
-// sendReq();
+sendReq();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
