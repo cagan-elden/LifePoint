@@ -8,12 +8,24 @@
         </div>
         <div class="sendFriend">
             <?php
-            
+
+            $sessionToInt = intval($_SESSION['userId']);
+
+            $query = "SELECT * FROM notification WHERE notificationFrom=:from AND notificationTo=:to";
+            $checkReq = $conn->prepare($query);
+            $checkReq->bindParam(":from", $sessionToInt, PDO::PARAM_INT);
+            $checkReq->bindParam(":to", $user, PDO::PARAM_INT);
+            $checkReq->execute();
+
+            $checkRow = $checkReq->rowCount();
+
             // Check if the client is the user or the friend.
-            if ($_SESSION['userId'] != $user && $isFriend != 1) {
+            if ($_SESSION['userId'] != $user && $isFriend != 1 && $checkRow == 0) {
                 ?> <button id="sendReq">Send Request</button> <?php
             } else if ($isFriend == 1) {
                 ?> <button id="beFriend">Unfollow</button> <?php
+            } else {
+                ?> <button id="beFriend" disabled>Request Sent</button> <?php
             }
             
             ?>

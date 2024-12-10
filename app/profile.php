@@ -4,7 +4,11 @@ session_start();
 
 function sendReq() {
     include "../databaseConn.php";
-    $accountOwner = intval($_GET['id']);
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    $accountOwner = intval($_POST['id']);
 
     $query = "SELECT friendOutro FROM friend WHERE friendIntro=:id";
     $getFr = $conn->prepare($query);
@@ -41,8 +45,10 @@ function sendReq() {
     }
 }
 
-sendReq();
-
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    sendReq();
+    exit();
+}
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 

@@ -381,6 +381,10 @@ html, body {
     background-color: #d8d8d8;
     transition: background-color 0.5s;
 }
+.center .profileHeader .headerDetailContainer .sendFriend #beFriend:disabled {
+    background-color: #ddddddc7;
+    color: #005;
+}
 .center .profile .profileHeader #displayName {
     font-family: verdana;
     font-size: 20px;
