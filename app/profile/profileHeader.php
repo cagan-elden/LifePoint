@@ -24,7 +24,7 @@
                 ?> <button id="sendReq">Send Request</button> <?php
             } else if ($isFriend == 1) {
                 ?> <button id="beFriend">Unfollow</button> <?php
-            } else {
+            } else if ($_SESSION['userId'] != $user) {
                 ?> <button id="beFriend" disabled>Request Sent</button> <?php
             }
             

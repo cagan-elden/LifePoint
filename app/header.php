@@ -15,6 +15,8 @@
             <input type="text" name="query" id="searchbar" placeholder="Search ...">
             <button type="submit" id="searchButton">Search</button>
         </form>
+
+        <?php include 'script/php/checkFriendReq.php'; ?>
     </div>
 
     <div class="right">
