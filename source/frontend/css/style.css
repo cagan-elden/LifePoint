@@ -79,7 +79,11 @@ html, body {
 .header .searchbarDiv {
     float: left;
     margin-top: 0.75em;
-    margin-left: 27%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76.25em;
+
 }
 .header .searchbarDiv #searchbar {
     font-family: verdana;
@@ -106,10 +110,36 @@ html, body {
 
 .header .searchbarDiv .friendNotify {
     float: right;
+    margin-left: 1em;
+    position: relative;
 }
 .header .searchbarDiv .friendNotify #profilePicture {
     width: 3em;
     height: 3em;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: block;
+    box-shadow: 1px 1px 1px #ccc;
+    cursor: pointer;
+}
+.header .searchbarDiv .friendNotify #notificationNum {
+    font-family: verdana;
+    font-size: 15px;
+    background-color: cadetblue;
+    color: ghostwhite;
+    padding: 0.5em;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    display: block;
+    margin-left: 2em;
+    margin-top: -1.5em;
+    position: absolute;
+    border: 2px solid #ccc;
+    box-shadow: 1px 1px 1px #ccc;
+    cursor: pointer;
 }
 
 .header .right {
