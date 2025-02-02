@@ -11,11 +11,8 @@ if ($numReq > 0) {
     $getReq = $prepareReq->fetchAll(PDO::FETCH_ASSOC);
 
     $reqOrder = array(); // Stores the requests by request id and decides which to show
-    $i = 0;
 
     foreach ($getReq as $req) {
-        $i++;
-
         $query = 'SELECT profilePic, userId, username FROM user WHERE userId=:id';
         $prepareDataQuery = $conn->prepare($query);
         $prepareDataQuery->bindParam(':id', $req['notificationFrom']);
