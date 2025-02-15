@@ -25,5 +25,9 @@ session_start();
 
     ?>
     </div>
+
+    <!-- JQuery Imports -->
+    <script src="../source/library/jquery.js"></script>
+    <script src="../source/frontend/jquery/getUserDetFriendReq.js"></script>
 </body>
 </html>

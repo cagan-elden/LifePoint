@@ -27,6 +27,17 @@ if ($numReq > 0) {
                 <img src="<?php echo $userData['profilePic']; ?>" id="profilePicture">
                 <span id="notificationNum"><?php echo $numReq; ?></span>
             </div>
+
+            <div class="friendDetail">
+                <a href="#">
+                    <img src="../source/image/profile/default.jpg" id="profilePic" draggable="false">
+                    <h2 id="displayName">John Doe</h2>
+                    <span id="username">johndoe</span>
+                </a>
+
+                <button id="acceptReq">Accept</button>
+                <button id="rejectReq">Reject</button>
+            </div>
             <?php
         }
     }
