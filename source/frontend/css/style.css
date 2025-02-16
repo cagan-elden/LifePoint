@@ -147,13 +147,14 @@ html, body {
     border: 1px solid #ccc;
     border-radius: 0.75em;
     position: absolute;
-    margin-top: 100px; /* change here later */
     width: 10em;
     align-items: center;
     justify-content: center;
     text-align: center;
     box-shadow: 3px 3px 3px #ccc;
     display: none;
+    margin-top: 22em;
+    margin-left: 32em;
 }
 .header .searchbarDiv .friendDetail a {
     text-decoration: none;
