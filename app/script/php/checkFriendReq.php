@@ -1,40 +1,53 @@
 <?php
 
-$query = 'SELECT * FROM notification WHERE notificationTo=:client';
-$prepareReq = $conn->prepare($query);
-$prepareReq->bindParam(':client', $_SESSION['userId'], PDO::PARAM_INT);
-$prepareReq->execute();
+$query = 'SELECT notificationFrom FROM notification WHERE notificationTo=:to and notificationType="friend"';
 
-$numReq = $prepareReq->rowCount();
+$getNotif = $conn->prepare($query);
+$getNotif->bindParam(':to', $_SESSION['userId'], PDO::PARAM_INT);
+$getNotif->execute();
 
-if ($numReq > 0) {
-    $getReq = $prepareReq->fetchAll(PDO::FETCH_ASSOC);
+$notifIds = $getNotif->fetchAll();
+$notifNum = $getNotif->rowCount();
 
-    $reqOrder = array(); // Stores the requests by request id and decides which to show
+foreach ($notifIds as $notif) {
 
-    foreach ($getReq as $req) {
-        array_push($reqOrder, $req['notificationId']);
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+        $query = 'SELECT username, displayName, userId, profilePic FROM user WHERE userId=:id';
+
+        $getUser = $conn->prepare($query);
+        $getUser->bindParam(':id', $notif['notificationFrom'], PDO::PARAM_INT);
+        $getUser->execute();
+
+        $user = $getUser->fetch(PDO::FETCH_ASSOC);
+
+        if ($notifNum > 0) {
+            ?>
+
+                <div class="friendNotify">
+                    <img src="<?php echo $user['profilePic'] ?>" id="profilePicture">
+                    <span id="notificationNum"><?php echo $notifNum; ?></span>
+                </div>
+
+                <div class="friendDetail">
+                    <a href="#">
+                        <img src="../source/image/profile/default.jpg" id="profilePic" draggable="false">
+                        <h2 id="displayName">John Doe</h2>
+                        <span id="username">johndoe</span>
+                    </a>
+
+                    <input type="hidden" name="userId" id="userId" value="<?php echo $user['userId']; ?>">
+
+                    <button id="acceptReq">Accept</button>
+                    <button id="rejectReq">Reject</button>
+                </div>
+
+            <?php
+        }
+        ?>
+
+        <?php
     }
 }
 
 ?>
-
-<!--
-
-            <div class="friendNotify">
-                <img src="" id="profilePicture">
-                <span id="notificationNum"></span>
-            </div>
-
-            <div class="friendDetail">
-                <a href="#">
-                    <img src="../source/image/profile/default.jpg" id="profilePic" draggable="false">
-                    <h2 id="displayName">John Doe</h2>
-                    <span id="username">johndoe</span>
-                </a>
-
-                <button id="acceptReq">Accept</button>
-                <button id="rejectReq">Reject</button>
-            </div>
-
--->

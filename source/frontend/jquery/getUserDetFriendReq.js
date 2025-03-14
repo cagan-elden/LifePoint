@@ -1,16 +1,15 @@
-$(document).ready(function() {
-    const pageUrl = window.location.href;
+$(document).ready(function () {
+    let url = $(location).attr('href');
 
-    $('.friendNotify').click(function() {
-        $('.friendDetail').toggle(); 
+    $('.friendNotify').click(function(){
+        $('.friendDetail').toggle();
     });
 
-    $('#acceptReq').click(function(){
-        $.ajax({
-                url: pageUrl,
-                method: 'POST',
-                success: function (response) {
-                }
+    $('#acceptReq').click(function () {
+        let userId = $('#userId').val();
+
+        $.get(url, function (data) {
+            console.log('Value got: ', userId);
         });
     });
 });
