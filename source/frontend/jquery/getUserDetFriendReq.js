@@ -11,5 +11,8 @@ $(document).ready(function () {
         $.get(url, function (data) {
             console.log('Value got: ', userId);
         });
+        $.post(url, {id: userId, req: 1}).done(function (data) {
+            alert("Data loaded successfully...");
+        });
     });
 });

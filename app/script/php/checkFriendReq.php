@@ -39,14 +39,29 @@ foreach ($notifIds as $notif) {
                     <input type="hidden" name="userId" id="userId" value="<?php echo $user['userId']; ?>">
 
                     <button id="acceptReq">Accept</button>
-                    <button id="rejectReq">Reject</button>
+                    <button id="rejectReq">Decline</button>
                 </div>
 
             <?php
         }
-        ?>
+    } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $userId = $_POST['id'];
+        $req    = $_POST['req'];
 
-        <?php
+        if ($req == 1) {
+            $query = 'INSERT INTO friend SET friendIntro=:client, friendOutro=:sender';
+
+            $createFriendship = $conn->prepare($query);
+            $createFriendship->bindParam(':client', $_SESSION['userId'], PDO::PARAM_INT);
+            $createFriendship->bindParam(':sender', $userId, PDO::PARAM_INT);
+            $executeQuery = $createFriendship->execute();
+
+            if ($executeQuery) {
+                echo "Friend request successfully created";
+            } else {
+                echo "There is a problem with the system";
+            }
+        }
     }
 }
 
