@@ -37,6 +37,7 @@ foreach ($notifIds as $notif) {
                     </a>
 
                     <input type="hidden" name="userId" id="userId" value="<?php echo $user['userId']; ?>">
+                    <input type="hidden" name="notificationId" id="notificationId" value="<?php echo $notif['notificationId']; ?>">
 
                     <button id="acceptReq">Accept</button>
                     <button id="rejectReq">Decline</button>
@@ -45,8 +46,9 @@ foreach ($notifIds as $notif) {
             <?php
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $userId = $_POST['id'];
-        $req    = $_POST['req'];
+        $notificationId = $_POST['notifId'];
+        $userId         = $_POST['id'];
+        $req            = $_POST['req'];
 
         if ($req == 1) {
             $query = 'INSERT INTO friend SET friendIntro=:client, friendOutro=:sender';
@@ -61,6 +63,7 @@ foreach ($notifIds as $notif) {
             } else {
                 echo "There is a problem with the system";
             }
+        } else if ($req == 0) {
         }
     }
 }
