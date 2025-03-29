@@ -15,7 +15,7 @@ function delFriendReq (int $notifId) {
     if ($execReq) {
         echo "request successfully deleted...";
     } else {
-        echo "request couldn't get deleted..."
+        echo "request couldn't get deleted...";
     }
 }
 

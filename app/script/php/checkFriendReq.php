@@ -1,16 +1,15 @@
 <?php
 
-$query = 'SELECT notificationFrom FROM notification WHERE notificationTo=:to and notificationType="friend"';
+$query = 'SELECT * FROM notification WHERE notificationTo=:to and notificationType="friend"';
 
 $getNotif = $conn->prepare($query);
 $getNotif->bindParam(':to', $_SESSION['userId'], PDO::PARAM_INT);
 $getNotif->execute();
 
-$notifIds = $getNotif->fetchAll();
+$notifIds = $getNotif->fetchAll(PDO::FETCH_ASSOC);
 $notifNum = $getNotif->rowCount();
 
 foreach ($notifIds as $notif) {
-
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $query = 'SELECT username, displayName, userId, profilePic FROM user WHERE userId=:id';

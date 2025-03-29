@@ -13,13 +13,13 @@ if ($friendNum) {
     foreach ($friends as $friend) {
         $query = 'SELECT profilePic, displayName, username FROM user WHERE userId=:friendOutro';
         $getFriend = $conn->prepare($query);
-        $getFriend->bindParam(':friendOutro', $friend['userId'], PDO::PARAM_INT);
+        $getFriend->bindParam(':friendOutro', $friend['friendOutro'], PDO::PARAM_INT);
         $getFriend->execute();
         $friend = $getFriend->fetch(PDO::FETCH_ASSOC);
 
         ?>
         <div class="friend">
-            <img src="/../../<?php echo $friend['profilePic'] ?>" id="pfp">
+            <img src="<?php echo $friend['profilePic'] ?>" id="pfp">
             <span id="displayName"><?php echo $friend['displayName']; ?></span>
             <span id="username"><?php echo $friend['username'] ?></span>
         </div>
