@@ -31,8 +31,8 @@ foreach ($notifIds as $notif) {
                 <div class="friendDetail">
                     <a href="#">
                         <img src="../source/image/profile/default.jpg" id="profilePic" draggable="false">
-                        <h2 id="displayName">John Doe</h2>
-                        <span id="username">johndoe</span>
+                        <h2 id="displayName"><?php echo $user['displayName']; ?></h2>
+                        <span id="username"><?php echo $user['username']; ?></span>
                     </a>
 
                     <input type="hidden" name="userId" id="userId" value="<?php echo $user['userId']; ?>">
