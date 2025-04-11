@@ -282,6 +282,8 @@ html, body {
 .upperDash #welcome {
     font-family: verdana;
     font-size: 16px;
+    display: block;
+    margin-bottom: 0.5em;
 }
 .upperDash #detail {
     align-items: center;
@@ -289,6 +291,28 @@ html, body {
     font-size: 14px;
     margin-left: 25%;
 }
+
+/* friendDash */
+.upperDash .friend {
+    display: inline-block;
+    text-align: center;
+}
+.upperDash .friend #pfp {
+    width: 4em;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.upperDash .friend #displayName {
+    font-family: verdana;
+    font-size: 20px;
+    font-style: bold;
+    display: block;
+}
+.upperDash .friend #username {
+    font-family: verdana;
+    font-size: 15px;
+}
+
 /* dashboard */
 .center .dashContainer {
     display: flex;
