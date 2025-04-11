@@ -50,7 +50,16 @@ foreach ($notifIds as $notif) {
         $req            = $_POST['req'];
 
         if ($req == 1) {
+            // create friend as the sender
             $query = 'INSERT INTO friend SET friendIntro=:client, friendOutro=:sender';
+
+            $createFriendship = $conn->prepare($query);
+            $createFriendship->bindParam(':client', $_SESSION['userId'], PDO::PARAM_INT);
+            $createFriendship->bindParam(':sender', $userId, PDO::PARAM_INT);
+            $executeQuery = $createFriendship->execute();
+
+            // create friend as the client
+            $query = 'INSERT INTO friend SET friendIntro=:sender, friendOutro=:client';
 
             $createFriendship = $conn->prepare($query);
             $createFriendship->bindParam(':client', $_SESSION['userId'], PDO::PARAM_INT);
