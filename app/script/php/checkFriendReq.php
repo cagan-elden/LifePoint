@@ -68,6 +68,14 @@ foreach ($notifIds as $notif) {
 
             if ($executeQuery) {
                 echo "Friend request successfully created";
+
+                $query = 'DELETE * FROM notification WHERE notificationFrom=:from, notificationTo=:to';
+
+                $deleteNotif = $conn->prepare($query);
+                $deleteNotif->bindParam(':from', $userId, PDO::PARAM_INT);
+                $deleteNotif->bindParam(':to', $_SESSION['userId'], PDO::PARAM_INT);
+                
+                $execute = $deleteNotif->execute();
             } else {
                 echo "There is a problem with the system";
             }

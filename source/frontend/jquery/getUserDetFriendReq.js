@@ -9,11 +9,7 @@ $(document).ready(function () {
         let userId = $('#userId').val();
         let notificationId = $('#notificationId').val();
 
-        $.get(url, function (data) {
-            console.log('Value got: ', userId);
-        });
-        $.post(url, {id: userId, req: 1, notifId: notificationId}).done(function (data) {
-            alert("Data loaded successfully...");
-        });
+        $.get(url, function (data) { } );
+        $.post(url, {id: userId, req: 1, notifId: notificationId}).done(function (data) { } );
     });
 });
