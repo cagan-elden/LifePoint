@@ -69,7 +69,7 @@ foreach ($notifIds as $notif) {
             if ($executeQuery) {
                 echo "Friend request successfully created";
 
-                $query = 'DELETE * FROM notification WHERE notificationFrom=:from, notificationTo=:to';
+                $query = 'DELETE FROM notification WHERE notificationFrom=:from AND notificationTo=:to';
 
                 $deleteNotif = $conn->prepare($query);
                 $deleteNotif->bindParam(':from', $userId, PDO::PARAM_INT);
