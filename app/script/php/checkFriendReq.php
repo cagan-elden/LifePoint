@@ -29,7 +29,7 @@ foreach ($notifIds as $notif) {
                 </div>
 
                 <div class="friendDetail">
-                    <a href="#">
+                    <a href="profile.php?page=profile&id=<?php echo $user['userId']; ?>">
                         <img src="../source/image/profile/default.jpg" id="profilePic" draggable="false">
                         <h2 id="displayName"><?php echo $user['displayName']; ?></h2>
                         <span id="username"><?php echo $user['username']; ?></span>
@@ -44,7 +44,7 @@ foreach ($notifIds as $notif) {
 
             <?php
         }
-    } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    } else if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['request_way'] == 'friend') {
         $notificationId = $_POST['notifId'];
         $userId         = $_POST['id'];
         $req            = $_POST['req'];
