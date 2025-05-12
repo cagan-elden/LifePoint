@@ -68,12 +68,12 @@ foreach ($notifIds as $notif) {
 
             if ($executeQuery) {
                 $query = 'DELETE FROM notification WHERE notificationFrom=:from AND notificationTo=:to';
+                $data = [
+                    ':from' => $userId,
+                    ':to' => $_SESSION['userId']
+                ];
 
-                $deleteNotif = $conn->prepare($query);
-                $deleteNotif->bindParam(':from', $userId, PDO::PARAM_INT);
-                $deleteNotif->bindParam(':to', $_SESSION['userId'], PDO::PARAM_INT);
-                
-                $execute = $deleteNotif->execute();
+                $deleteNotif = executeQuery($query, $data, 'fetchNone');
             } else {
                 echo "There is a problem with the system";
             }

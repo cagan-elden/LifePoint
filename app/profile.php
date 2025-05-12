@@ -10,9 +10,10 @@ function sendReq() {
 
     $accountOwner = intval($_POST['id']);
 
-    $query = "SELECT friendOutro FROM friend WHERE friendIntro=:id";
+    $query = "SELECT * FROM friend WHERE friendIntro=:id AND friendOutro=:client";
     $getFr = $conn->prepare($query);
     $getFr->bindParam(":id", $accountOwner, PDO::PARAM_STR);
+    $getFr->bindParam(':client', $_SESSION['userId'], PDO::PARAM_INT);
     $getFr->execute();
 
     $isFriend = $getFr->rowCount();

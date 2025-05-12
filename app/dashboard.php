@@ -2,6 +2,7 @@
 
 include '../databaseConn.php';
 include 'script/php/functions.php';
+include '../config.php';
 
 session_start();
 
