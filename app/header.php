@@ -11,10 +11,8 @@
     </div>
 
     <div class="searchbarDiv">
-        <form action="search.php" method="post">
-            <input type="hidden" name="request_way" value="search"> <!-- future bugfix for request_way for searchbar -->
-
-            <input type="text" name="query" id="searchbar" placeholder="Search ...">
+        <form action="search.php" method="get">
+            <input type="text" name="search_query" id="searchbar" placeholder="Search ...">
             <button type="submit" id="searchButton">Search</button>
         </form>
 
