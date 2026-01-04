@@ -1,5 +1,0 @@
-<?php
-
-include 'delimiter.php';
-
-?>
